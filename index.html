@@ -16,9 +16,11 @@
     <meta name="twitter:title" content="Mahmoud Elkhazragy | Operations Director">
     <meta name="twitter:description" content="A decade of turning operational complexity into competitive advantage. Explore the strategic deployment log.">
     <meta name="twitter:image" content="https://mohamedomar11111.github.io/mahmoud-portfolio-asset/WhatsApp%20Image%202026-05-20%20at%2000.53.08.jpeg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
 
@@ -26,8 +28,8 @@
             --bg-black: #000000;
             --zinc-900: #18181b;
             --zinc-800: #27272a;
-            --growth-blue: #3b82f6; /* Electric Blue */
-            --growth-green: #10b981; /* Emerald Green */
+            --growth-blue: #3b82f6; 
+            --growth-green: #10b981; 
             --onyx-gold: #C9A84C;
         }
 
@@ -37,6 +39,7 @@
             font-family: 'Cairo', sans-serif;
             overflow-x: hidden;
             cursor: none;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
@@ -44,10 +47,13 @@
             letter-spacing: -0.02em;
         }
 
+        /* FLUID TYPOGRAPHY */
+        .text-hero-title { font-size: clamp(3rem, 10vw, 8rem); }
+        .text-hero-statement { font-size: clamp(1.5rem, 5vw, 4rem); }
+
         /* CUSTOM CURSOR */
         .cursor-dot {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             background-color: var(--growth-green);
             border-radius: 50%;
             position: fixed;
@@ -57,8 +63,7 @@
             transform: translate(-50%, -50%);
         }
         .cursor-outline {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border: 1px solid rgba(16, 185, 129, 0.4);
             border-radius: 50%;
             position: fixed;
@@ -69,8 +74,7 @@
             transition: width 0.2s, height 0.2s;
         }
         .cursor-outline.hover {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             background-color: rgba(16, 185, 129, 0.05);
             border-color: var(--growth-blue);
         }
@@ -83,7 +87,8 @@
         }
         
         .scene-fixed-height {
-            height: var(--scene-height, 100vh);
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
         }
 
         .layer {
@@ -109,32 +114,19 @@
         /* ARCHITECTURAL SHAPES */
         .strike-blue {
             background: linear-gradient(90deg, transparent, var(--growth-blue), transparent);
-            height: 1px;
-            width: 100%;
-            position: absolute;
-            opacity: 0.3;
-        }
-        .strike-green {
-            background: linear-gradient(90deg, transparent, var(--growth-green), transparent);
-            height: 1px;
-            width: 100%;
-            position: absolute;
-            opacity: 0.3;
+            height: 1px; width: 100%;
+            position: absolute; opacity: 0.3;
         }
         .glow-node {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
+            width: 300px; height: 300px;
+            border-radius: 50%; filter: blur(80px);
             position: absolute;
         }
 
         .noise-overlay {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04;
-            z-index: 100;
+            opacity: 0.04; z-index: 100;
             pointer-events: none;
         }
 
@@ -154,8 +146,18 @@
             mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
             filter: grayscale(1) contrast(1.1) brightness(0.9);
-            max-height: 80vh;
+            max-height: 70vh;
+            width: auto;
             object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .hero-portrait {
+                max-height: 50vh;
+                opacity: 0.4 !important; /* Mute image on mobile so text is readable */
+            }
+            .glass-card { p: 6; }
+            .scene { py: 16; }
         }
 
         /* ACCESSIBILITY */
@@ -176,16 +178,15 @@
     <div class="noise-overlay"></div>
 
     <!-- 1. HERO STRIKE -->
-    <section class="scene scene-fixed-height" data-scene="hero" style="--scene-height: 100vh">
-        <!-- Background Architecture -->
+    <section class="scene scene-fixed-height" data-scene="hero">
         <div class="layer depth-0" data-depth="0">
             <div class="glow-node bg-blue-600 top-[-10%] left-[-10%]"></div>
             <div class="glow-node bg-emerald-600 bottom-[-10%] right-[-10%]"></div>
         </div>
         
         <div class="layer layer-flex depth-1" data-depth="1">
-            <div class="w-[70vw] h-[70vw] border border-zinc-800/30 rotate-12 flex items-center justify-center">
-                <div class="w-[50vw] h-[50vw] border border-zinc-800/20 rotate-[-24deg]"></div>
+            <div class="w-[90vw] h-[90vw] md:w-[70vw] md:h-[70vw] border border-zinc-800/30 rotate-12 flex items-center justify-center">
+                <div class="w-[60vw] h-[60vw] md:w-[50vw] md:h-[50vw] border border-zinc-800/20 rotate-[-24deg]"></div>
             </div>
         </div>
 
@@ -197,187 +198,178 @@
         </div>
 
         <div class="layer depth-4 interactable" data-depth="4">
-            <div class="h-full flex flex-col justify-center px-10 md:px-20 max-w-7xl">
+            <div class="h-full flex flex-col justify-center px-6 md:px-20 max-w-7xl relative z-30">
                 <!-- 1. IDENTITY BLOCK -->
-                <div class="mb-10">
-                    <div class="mono text-zinc-500 text-xs tracking-[0.4em] uppercase mb-4 opacity-0" id="hero-tag">Operations Director // Chief Operating Officer</div>
-                    <h1 class="text-[8vw] md:text-[6vw] leading-none font-black tracking-tighter uppercase italic text-white" id="hero-title">
+                <div class="mb-8 md:mb-10">
+                    <div class="mono text-zinc-500 text-[10px] md:text-xs tracking-[0.4em] uppercase mb-4 opacity-0" id="hero-tag">Operations Director // COO</div>
+                    <h1 class="text-hero-title leading-none font-black tracking-tighter uppercase italic text-white" id="hero-title">
                         MAHMOUD<br><span class="text-growth-green">ELKHAZRAGY</span>
                     </h1>
-                    <div class="strike-blue mt-6 scale-x-0 origin-left" id="hero-strike"></div>
+                    <div class="strike-blue mt-4 md:mt-6 scale-x-0 origin-left" id="hero-strike"></div>
                 </div>
 
                 <!-- 2. ACCESS BLOCK -->
-                <div class="flex flex-col gap-6 mb-12 z-50 opacity-0" id="contact-strike">
+                <div class="flex flex-col gap-4 md:gap-6 mb-10 md:mb-12 z-50 opacity-0" id="contact-strike">
                     <div class="flex flex-col gap-1">
-                        <span class="text-white font-black text-xs uppercase tracking-[0.3em] mb-2 opacity-50">Operational Access</span>
-                        <a href="tel:+201270009993" class="hover-target text-white font-bold text-xl md:text-2xl transition-all hover:text-growth-green">M +20 127 000 9993</a>
-                        <a href="mailto:melkhazragy@outlook.com" class="hover-target text-white font-bold text-xl md:text-2xl transition-all hover:text-growth-blue">E melkhazragy@outlook.com</a>
-                        <a href="https://linkedin.com/in/mahmoud-el-khazragy" target="_blank" class="hover-target text-white font-bold text-xl md:text-2xl transition-all hover:opacity-70 text-nowrap">IN Mahmoud Elkhazragy</a>
+                        <span class="text-white font-black text-[9px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-2 opacity-50">Operational Access</span>
+                        <a href="tel:+201270009993" class="hover-target text-white font-bold text-lg md:text-2xl transition-all hover:text-growth-green truncate">M +20 127 000 9993</a>
+                        <a href="mailto:melkhazragy@outlook.com" class="hover-target text-white font-bold text-lg md:text-2xl transition-all hover:text-growth-blue truncate">E melkhazragy@outlook.com</a>
+                        <a href="https://linkedin.com/in/mahmoud-el-khazragy" target="_blank" class="hover-target text-white font-bold text-lg md:text-2xl transition-all hover:opacity-70 truncate">IN Mahmoud Elkhazragy</a>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-px bg-zinc-700"></div>
-                        <span class="text-white font-bold text-xs uppercase tracking-widest">Cairo, EG // Open to Relocation</span>
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <div class="w-8 md:w-12 h-px bg-zinc-700"></div>
+                        <span class="text-white font-bold text-[10px] md:text-xs uppercase tracking-widest">Cairo, EG // Open to Relocation</span>
                     </div>
                 </div>
 
                 <!-- 3. STRATEGIC STATEMENT BLOCK -->
-                <div class="mb-8 opacity-0" id="hero-statement">
-                    <p class="text-[4vw] leading-[1.1] font-black tracking-tighter text-white max-w-4xl italic">
-                        "Some leaders <span class="text-growth-blue">manage</span> operations.<br>
+                <div class="mb-6 md:mb-8 opacity-0" id="hero-statement">
+                    <p class="text-hero-statement leading-[1.1] font-black tracking-tighter text-white max-w-4xl italic">
+                        "Some leaders <span class="text-growth-blue">manage</span> operations.<br class="hidden md:block">
                         Others <span class="text-growth-green">redefine</span> them."
                     </p>
                 </div>
 
                 <!-- 4. SYSTEM LABEL -->
                 <div class="opacity-0" id="hero-engine">
-                    <p class="mono text-[10px] text-growth-blue uppercase tracking-[0.5em]">Growth Architectural Engine 3.12</p>
+                    <p class="mono text-[8px] md:text-[10px] text-growth-blue uppercase tracking-[0.5em]">Growth Architectural Engine 3.12</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 2. PROFESSIONAL SUMMARY -->
-    <section class="scene min-h-screen py-32 bg-zinc-950 relative z-20 border-y border-zinc-900">
-        <div class="max-w-5xl mx-auto px-8">
+    <section class="scene min-h-screen py-20 md:py-32 bg-zinc-950 relative z-20 border-y border-zinc-900">
+        <div class="max-w-5xl mx-auto px-6 md:px-8">
             <div class="text-growth-blue text-[10px] uppercase tracking-[0.5em] mb-8 flex items-center gap-4">
                 <div class="w-8 h-[1px] bg-growth-blue"></div> STRATEGIC INTENT
             </div>
             
-            <h2 class="text-3xl md:text-5xl font-bold mb-12 italic border-l-4 border-growth-green pl-6 text-white leading-tight" id="summary-headline">
+            <h2 class="text-2xl md:text-5xl font-bold mb-10 md:mb-12 italic border-l-4 border-growth-green pl-5 md:pl-6 text-white leading-tight" id="summary-headline">
                 A decade of turning operational complexity into competitive advantage.
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-zinc-400 text-lg leading-relaxed fade-up-group">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 text-zinc-400 text-base md:text-lg leading-relaxed fade-up-group">
                 <div class="space-y-6">
                     <p>Mahmoud Elkhazragy is a high-impact Operations Leader with 10+ years of demonstrated excellence scaling tech-enabled businesses across Egypt's most competitive sectors — FMCG, mobility, hospitality, and automotive. He doesn't just run operations; he <strong class="text-growth-green">architects</strong> them from zero and engineers them to perform at scale.</p>
-                    <p>From building Boost Technology's entire operational backbone as <strong>Operations Director & COO</strong>, to commanding a <strong>500+ person team at Capiter across 11 cities</strong>, to driving <strong>880% captain acquisition growth at SWVL</strong> — Mahmoud consistently transforms operational complexity into strategic clarity, and bold vision into measurable bottom-line results.</p>
+                    <p>From building Boost Technology's entire operational backbone as <strong>Operations Director & COO</strong>, to commanding a <strong>500+ person team at Capiter across 11 cities</strong>, to driving <strong>880% captain acquisition growth at SWVL</strong>.</p>
                 </div>
                 <div class="space-y-6 border-t md:border-t-0 md:border-l border-zinc-900 pt-8 md:pt-0 md:pl-12">
-                    <p>His competitive edge lies in a rare trifecta: the strategic mindset of a C-suite executive, the ground-level instincts of a seasoned operator, and the financial discipline of a P&L owner who has managed budgets from startup runway to enterprise scale. He leads with data, executes with precision, and scales with purpose — delivering outcomes that appear on the income statement, not just the boardroom slide deck.</p>
-                    <p>Whether renegotiating supplier contracts to unlock <strong class="text-white">EGP 12M in savings</strong> during a global pandemic, reducing cost-to-serve by <strong class="text-growth-blue">63%</strong> through digital innovation, or pioneering embedded SNPL financial models that unlocked new revenue channels — Mahmoud doesn't follow industry playbooks. He writes them.</p>
+                    <p>Mahmoud consistently transforms operational complexity into strategic clarity, and bold vision into measurable bottom-line results. He leads with data, executes with precision, and scales with purpose.</p>
+                    <p>Whether unlocking <strong class="text-white">EGP 12M in savings</strong> during a global pandemic, reducing cost-to-serve by <strong class="text-growth-blue">63%</strong> through digital innovation, or pioneering embedded SNPL financial models that unlocked new revenue channels — Mahmoud doesn't follow industry playbooks. He writes them.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 3. IMPACT AT A GLANCE -->
-    <section class="scene py-32 bg-black relative z-20">
-        <div class="max-w-6xl mx-auto px-8">
-            <div class="text-growth-green text-[10px] uppercase tracking-[0.5em] mb-20 flex items-center gap-4 justify-center">
+    <section class="scene py-20 md:py-32 bg-black relative z-20">
+        <div class="max-w-6xl mx-auto px-6 md:px-8">
+            <div class="text-growth-green text-[10px] uppercase tracking-[0.5em] mb-16 md:mb-20 flex items-center gap-4 justify-center">
                 <div class="w-8 h-[1px] bg-growth-green"></div> ARCHITECTURAL IMPACT <div class="w-8 h-[1px] bg-growth-green"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <!-- Metric 1 -->
-                <div class="glass-card p-10 rounded-sm hover-target group">
-                    <div class="text-6xl font-black text-growth-green mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group">
+                    <div class="text-4xl md:text-6xl font-black text-growth-green mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="880">0</span>%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Growth in Captain Acquisition</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">SWVL Egypt</p>
-                    <div class="mt-6 w-0 h-px bg-growth-green group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Growth in Captain Acquisition</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">SWVL Egypt</p>
                 </div>
                 <!-- Metric 2 -->
-                <div class="glass-card p-10 rounded-sm hover-target group border-l-growth-green">
-                    <div class="text-6xl font-black text-white mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group border-l-growth-green">
+                    <div class="text-4xl md:text-6xl font-black text-white mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="63">0</span>%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Reduction in Cost-to-Serve</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Boost Technology</p>
-                    <div class="mt-6 w-0 h-px bg-white group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Reduction in Cost-to-Serve</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">Boost Technology</p>
                 </div>
                 <!-- Metric 3 -->
-                <div class="glass-card p-10 rounded-sm hover-target group">
-                    <div class="text-6xl font-black text-growth-blue mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group">
+                    <div class="text-4xl md:text-6xl font-black text-growth-blue mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="500">0</span>+
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Operational Workforce</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Capiter // 11 Cities</p>
-                    <div class="mt-6 w-0 h-px bg-growth-blue group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Operational Workforce</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">Capiter // 11 Cities</p>
                 </div>
                 <!-- Metric 4 -->
-                <div class="glass-card p-10 rounded-sm hover-target group border-l-growth-blue">
-                    <div class="text-6xl font-black text-white mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group border-l-growth-blue">
+                    <div class="text-4xl md:text-6xl font-black text-white mb-3 md:mb-4 italic flex items-baseline gap-1">
                         EGP <span class="counter" data-target="12">0</span>M
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Contract Renegotiations</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">COVID-era Savings</p>
-                    <div class="mt-6 w-0 h-px bg-white group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Contract Renegotiations</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">COVID-era Savings</p>
                 </div>
                 <!-- Metric 5 -->
-                <div class="glass-card p-10 rounded-sm hover-target group">
-                    <div class="text-6xl font-black text-growth-green mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group">
+                    <div class="text-4xl md:text-6xl font-black text-growth-green mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="97">0</span>%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Fulfillment Rate</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Across 8 Cities</p>
-                    <div class="mt-6 w-0 h-px bg-growth-green group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Fulfillment Rate</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">Across 8 Cities</p>
                 </div>
                 <!-- Metric 6 -->
-                <div class="glass-card p-10 rounded-sm hover-target group border-l-growth-green">
-                    <div class="text-6xl font-black text-white mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group border-l-growth-green">
+                    <div class="text-4xl md:text-6xl font-black text-white mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="98">0</span>%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Forecasting Accuracy</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Proprietary Capiter Tool</p>
-                    <div class="mt-6 w-0 h-px bg-white group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Forecasting Accuracy</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">Proprietary Capiter Tool</p>
                 </div>
                 <!-- Metric 7 -->
-                <div class="glass-card p-10 rounded-sm hover-target group">
-                    <div class="text-6xl font-black text-growth-blue mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group">
+                    <div class="text-4xl md:text-6xl font-black text-growth-blue mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="66">0</span>%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">GMV Growth (2 Quarters)</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">PRIME Hospitality</p>
-                    <div class="mt-6 w-0 h-px bg-growth-blue group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">GMV Growth (2 Quarters)</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">PRIME Hospitality</p>
                 </div>
                 <!-- Metric 8 -->
-                <div class="glass-card p-10 rounded-sm hover-target group border-l-growth-blue">
-                    <div class="text-6xl font-black text-white mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group border-l-growth-blue">
+                    <div class="text-4xl md:text-6xl font-black text-white mb-3 md:mb-4 italic flex items-baseline gap-1">
                         <span class="counter" data-target="9.2" data-decimals="1">0</span>%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">COGS Reduction</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">SWVL Bidding Platform</p>
-                    <div class="mt-6 w-0 h-px bg-white group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">COGS Reduction</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">SWVL Bidding Platform</p>
                 </div>
                 <!-- Metric 9 -->
-                <div class="glass-card p-10 rounded-sm hover-target group border-l-growth-green">
-                    <div class="text-5xl font-black text-growth-green mb-4 italic flex items-baseline gap-1">
+                <div class="glass-card p-6 md:p-10 rounded-sm hover-target group border-l-growth-green">
+                    <div class="text-4xl md:text-5xl font-black text-growth-green mb-3 md:mb-4 italic flex items-baseline gap-1">
                         15% → 2%
                     </div>
-                    <p class="text-sm font-bold text-white uppercase tracking-wider mb-2">Captain Churn Reduction</p>
-                    <p class="text-[10px] text-zinc-500 uppercase tracking-widest">SWVL Retention Engine</p>
-                    <div class="mt-6 w-0 h-px bg-growth-green group-hover:w-full transition-all duration-500"></div>
+                    <p class="text-xs md:text-sm font-bold text-white uppercase tracking-wider mb-1 md:mb-2">Captain Churn Reduction</p>
+                    <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest">SWVL Retention Engine</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 4. PROFESSIONAL STRIKE HISTORY -->
-    <section class="py-32 bg-zinc-950 relative z-20">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="text-growth-blue text-[10px] uppercase tracking-[0.5em] mb-16 flex items-center gap-4">
+    <section class="py-20 md:py-32 bg-zinc-950 relative z-20">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="text-growth-blue text-[10px] uppercase tracking-[0.5em] mb-12 md:mb-16 flex items-center gap-4">
                 <div class="w-8 h-[1px] bg-growth-blue"></div> DEPLOYMENT LOG
             </div>
 
-            <div class="space-y-32">
+            <div class="space-y-20 md:space-y-32">
                 <!-- Boost -->
-                <div class="flex flex-col md:flex-row gap-12 job-row">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 job-row">
                     <div class="md:w-1/3">
-                        <div class="sticky top-32">
-                            <h3 class="text-5xl font-black text-white uppercase italic leading-none mb-4">BOOST</h3>
-                            <p class="text-growth-green font-bold tracking-widest text-sm mb-4">OPERATIONS DIRECTOR & COO</p>
-                            <p class="text-zinc-500 text-xs tracking-widest uppercase">April 2023 – Present | Cairo</p>
-                            <div class="w-12 h-1 bg-growth-blue mt-6"></div>
+                        <div class="md:sticky md:top-32">
+                            <h3 class="text-3xl md:text-5xl font-black text-white uppercase italic leading-none mb-3 md:mb-4">BOOST</h3>
+                            <p class="text-growth-green font-bold tracking-widest text-xs md:text-sm mb-2 md:mb-4">OPERATIONS DIRECTOR & COO</p>
+                            <p class="text-zinc-500 text-[10px] md:text-xs tracking-widest uppercase">April 2023 – Present</p>
+                            <div class="w-10 md:w-12 h-1 bg-growth-blue mt-4 md:mt-6"></div>
                         </div>
                     </div>
-                    <div class="md:w-2/3 space-y-8 text-zinc-400">
-                        <div class="glass-card p-10">
-                            <p class="text-white italic text-xl mb-10 leading-relaxed border-l-2 border-growth-green pl-6 bg-zinc-900/40 p-4">"Building an operation from zero is easy to romanticize. Running it profitably — at scale — is a different discipline entirely."</p>
-                            <div class="space-y-10 text-sm">
+                    <div class="md:w-2/3 space-y-6 md:space-y-8 text-zinc-400">
+                        <div class="glass-card p-6 md:p-10">
+                            <p class="text-white italic text-lg md:text-xl mb-8 md:mb-10 leading-relaxed border-l-2 border-growth-green pl-5 md:pl-6 bg-zinc-900/40 p-4">"Building an operation from zero is easy to romanticize. Running it profitably — at scale — is a different discipline entirely."</p>
+                            <div class="space-y-8 md:space-y-10 text-xs md:text-sm">
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4 flex items-center gap-2">
                                         <span class="w-1 h-3 bg-growth-green"></span> Strategic Founding & GTM
                                     </h4>
                                     <ul class="space-y-3 list-none">
@@ -387,7 +379,7 @@
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4 flex items-center gap-2">
                                         <span class="w-1 h-3 bg-growth-blue"></span> P&L Ownership & Financials
                                     </h4>
                                     <ul class="space-y-3 list-none">
@@ -397,7 +389,7 @@
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4 flex items-center gap-2">
                                         <span class="w-1 h-3 bg-growth-green"></span> Digital Transformation & Ops
                                     </h4>
                                     <ul class="space-y-3 list-none">
@@ -408,7 +400,7 @@
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4 flex items-center gap-2">
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4 flex items-center gap-2">
                                         <span class="w-1 h-3 bg-growth-blue"></span> Strategic Partnerships
                                     </h4>
                                     <ul class="space-y-3 list-none">
@@ -422,21 +414,21 @@
                 </div>
 
                 <!-- Capiter -->
-                <div class="flex flex-col md:flex-row gap-12 job-row">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 job-row">
                     <div class="md:w-1/3">
-                        <div class="sticky top-32">
-                            <h3 class="text-5xl font-black text-white uppercase italic leading-none mb-4">CAPITER</h3>
-                            <p class="text-growth-blue font-bold tracking-widest text-sm mb-4">SR. DEMAND & PERFORMANCE MANAGER</p>
-                            <p class="text-zinc-500 text-xs tracking-widest uppercase">Nov 2021 – Dec 2022 | Cairo</p>
-                            <div class="w-12 h-1 bg-growth-green mt-6"></div>
+                        <div class="md:sticky md:top-32">
+                            <h3 class="text-3xl md:text-5xl font-black text-white uppercase italic leading-none mb-3 md:mb-4">CAPITER</h3>
+                            <p class="text-growth-blue font-bold tracking-widest text-xs md:text-sm mb-2 md:mb-4">SR. DEMAND & PERFORMANCE</p>
+                            <p class="text-zinc-500 text-[10px] md:text-xs tracking-widest uppercase">Nov 2021 – Dec 2022</p>
+                            <div class="w-10 md:w-12 h-1 bg-growth-green mt-4 md:mt-6"></div>
                         </div>
                     </div>
-                    <div class="md:w-2/3 space-y-8 text-zinc-400">
-                        <div class="glass-card p-10 border-l-growth-green">
-                            <p class="text-white italic text-xl mb-10 leading-relaxed border-l-2 border-growth-blue pl-6 bg-zinc-900/40 p-4">"At Capiter, the operation wasn't a department. It was a living, breathing organism — and someone had to be its nervous system."</p>
-                            <div class="space-y-10 text-sm">
+                    <div class="md:w-2/3 space-y-6 md:space-y-8 text-zinc-400">
+                        <div class="glass-card p-6 md:p-10 border-l-growth-green">
+                            <p class="text-white italic text-lg md:text-xl mb-8 md:mb-10 leading-relaxed border-l-2 border-growth-blue pl-5 md:pl-6 bg-zinc-900/40 p-4">"At Capiter, the operation wasn't a department. It was a living, breathing organism — and someone had to be its nervous system."</p>
+                            <div class="space-y-8 md:space-y-10 text-xs md:text-sm">
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4">Large-Scale Team Leadership</h4>
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4">Large-Scale Team Leadership</h4>
                                     <ul class="space-y-3 list-none">
                                         <li class="pl-4 border-l border-zinc-800">Directed a cross-functional workforce of 500+ team members across 11 cities.</li>
                                         <li class="pl-4 border-l border-zinc-800">Built management hierarchies and performance review frameworks for extraordinary scale.</li>
@@ -444,21 +436,21 @@
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4">Revenue & Commercial Strategy</h4>
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4">Revenue & Commercial Strategy</h4>
                                     <ul class="space-y-3 list-none">
                                         <li class="pl-4 border-l border-zinc-800">Managed pricing architecture and gross margin optimization to protect profitability.</li>
                                         <li class="pl-4 border-l border-zinc-800">Developed LTV-maximization frameworks shifting focus from acquisition to long-term profitability.</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4">Data Intelligence & Forecasting</h4>
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4">Data Intelligence & Forecasting</h4>
                                     <ul class="space-y-3 list-none">
                                         <li class="pl-4 border-l border-zinc-800">Built commercial dashboards in Looker and Data Studio for daily decision-making.</li>
                                         <li class="pl-4 border-l border-zinc-800">Developed proprietary demand forecasting tool achieving 98% accuracy.</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h4 class="text-white uppercase tracking-widest font-bold mb-4">Channel Innovation & SNPL</h4>
+                                    <h4 class="text-white uppercase tracking-widest font-bold mb-3 md:mb-4">Channel Innovation & SNPL</h4>
                                     <ul class="space-y-3 list-none">
                                         <li class="pl-4 border-l border-zinc-800">Operationalized 4 warehouse facilities across 8 cities, sustaining 97% fulfillment rate.</li>
                                         <li class="pl-4 border-l border-zinc-800">Launched 'Key Retail' channel, growing it to 30% of total company GMV.</li>
@@ -471,19 +463,19 @@
                 </div>
 
                 <!-- SWVL -->
-                <div class="flex flex-col md:flex-row gap-12 job-row">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 job-row">
                     <div class="md:w-1/3">
-                        <div class="sticky top-32">
-                            <h3 class="text-5xl font-black text-white uppercase italic leading-none mb-4">SWVL</h3>
-                            <p class="text-growth-blue font-bold tracking-widest text-sm mb-4">STRATEGIC PROJECTS & GROWTH</p>
-                            <p class="text-zinc-500 text-xs tracking-widest uppercase">Feb 2020 – Nov 2021 | Cairo</p>
-                            <div class="w-12 h-1 bg-growth-blue mt-6"></div>
+                        <div class="md:sticky md:top-32">
+                            <h3 class="text-3xl md:text-5xl font-black text-white uppercase italic leading-none mb-3 md:mb-4">SWVL</h3>
+                            <p class="text-growth-blue font-bold tracking-widest text-xs md:text-sm mb-2 md:mb-4">STRATEGIC PROJECTS & GROWTH</p>
+                            <p class="text-zinc-500 text-[10px] md:text-xs tracking-widest uppercase">Feb 2020 – Nov 2021</p>
+                            <div class="w-10 md:w-12 h-1 bg-growth-blue mt-4 md:mt-6"></div>
                         </div>
                     </div>
-                    <div class="md:w-2/3 space-y-8 text-zinc-400">
-                        <div class="glass-card p-10">
-                            <p class="text-white italic text-xl mb-10 leading-relaxed border-l-2 border-growth-green pl-6 bg-zinc-900/40 p-4">"In mobility, supply is everything. Without captains, there is no product. Mahmoud's mandate was to make sure SWVL never ran out."</p>
-                            <ul class="space-y-6 text-sm">
+                    <div class="md:w-2/3 space-y-6 md:space-y-8 text-zinc-400">
+                        <div class="glass-card p-6 md:p-10">
+                            <p class="text-white italic text-lg md:text-xl mb-8 md:mb-10 leading-relaxed border-l-2 border-growth-green pl-5 md:pl-6 bg-zinc-900/40 p-4">"In mobility, supply is everything. Without captains, there is no product. Mahmoud's mandate was to make sure SWVL never ran out."</p>
+                            <ul class="space-y-5 md:space-y-6 text-xs md:text-sm">
                                 <li class="flex gap-4">
                                     <span class="text-growth-green font-black">01</span>
                                     <p>Founded and led the supply growth team, creating execution frameworks replicated across international market operations.</p>
@@ -508,83 +500,29 @@
                                     <span class="text-growth-blue font-black">06</span>
                                     <p>Achieved <strong class="text-white">880% growth</strong> while reducing incentive spend from 11.7% to 4.6% of revenue.</p>
                                 </li>
-                                <li class="flex gap-4">
-                                    <span class="text-growth-green font-black">07</span>
-                                    <p>Boosted supply-side gross margins by 33% through pricing refinement.</p>
-                                </li>
-                                <li class="flex gap-4">
-                                    <span class="text-growth-blue font-black">08</span>
-                                    <p>Introduced the <strong class="text-white">Sedan category</strong>, contributing 44% of daily GMV within launch window.</p>
-                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <!-- Prime -->
-                <div class="flex flex-col md:flex-row gap-12 job-row">
+                <div class="flex flex-col md:flex-row gap-8 md:gap-12 job-row">
                     <div class="md:w-1/3">
-                        <div class="sticky top-32">
-                            <h3 class="text-5xl font-black text-white uppercase italic leading-none mb-4">PRIME</h3>
-                            <p class="text-growth-green font-bold tracking-widest text-sm mb-4">BUSINESS DEVELOPMENT MANAGER</p>
-                            <p class="text-zinc-500 text-xs tracking-widest uppercase">Aug 2019 – Aug 2020 | Cairo</p>
-                            <div class="w-12 h-1 bg-growth-green mt-6"></div>
+                        <div class="md:sticky md:top-32">
+                            <h3 class="text-3xl md:text-5xl font-black text-white uppercase italic leading-none mb-3 md:mb-4">PRIME</h3>
+                            <p class="text-growth-green font-bold tracking-widest text-xs md:text-sm mb-2 md:mb-4">BUSINESS DEVELOPMENT MANAGER</p>
+                            <p class="text-zinc-500 text-[10px] md:text-xs tracking-widest uppercase">Aug 2019 – Aug 2020</p>
+                            <div class="w-10 md:w-12 h-1 bg-growth-green mt-4 md:mt-6"></div>
                         </div>
                     </div>
-                    <div class="md:w-2/3 space-y-8 text-zinc-400">
-                        <div class="glass-card p-10 border-l-growth-green">
-                            <p class="text-white italic text-xl mb-10 leading-relaxed">"Growth in hospitality isn't just about adding inventory. It's about earning the trust of property owners."</p>
-                            <ul class="space-y-5 text-sm">
+                    <div class="md:w-2/3 space-y-6 md:space-y-8 text-zinc-400">
+                        <div class="glass-card p-6 md:p-10 border-l-growth-green">
+                            <p class="text-white italic text-lg md:text-xl mb-8 md:mb-10 leading-relaxed">"Growth in hospitality isn't just about adding inventory. It's about earning the trust of property owners."</p>
+                            <ul class="space-y-4 md:space-y-5 text-xs md:text-sm">
                                 <li class="pl-4 border-l border-zinc-800">Led a business development team of 5, managing new pipeline and existing key accounts.</li>
-                                <li class="pl-4 border-l border-zinc-800">Founding role in three verticals: INN (budget), Select (mid-market), and Eco-Lodges (experiential).</li>
-                                <li class="pl-4 border-l border-zinc-800">Scaled managed portfolio from 40 to 178 units (345% expansion) via partnerships with ERC and El Gouna.</li>
+                                <li class="pl-4 border-l border-zinc-800">Founding role in three verticals: INN, Select, and Eco-Lodges.</li>
+                                <li class="pl-4 border-l border-zinc-800">Scaled managed portfolio from 40 to 178 units (345% expansion).</li>
                                 <li class="pl-4 border-l border-zinc-800">Generated a <strong class="text-white">66% increase in Group GMV</strong> within two quarters.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Auto Group -->
-                <div class="flex flex-col md:flex-row gap-12 job-row">
-                    <div class="md:w-1/3">
-                        <div class="sticky top-32">
-                            <h3 class="text-5xl font-black text-white uppercase italic leading-none mb-4">AUTO GROUP</h3>
-                            <p class="text-growth-blue font-bold tracking-widest text-sm mb-4">SALES & MARKETING MANAGER</p>
-                            <p class="text-zinc-500 text-xs tracking-widest uppercase">March 2018 – Aug 2019 | Cairo</p>
-                            <div class="w-12 h-1 bg-growth-blue mt-6"></div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3 space-y-8 text-zinc-400">
-                        <div class="glass-card p-10">
-                            <p class="text-white italic text-xl mb-10 leading-relaxed">"Understanding what a customer wants before they know it themselves — that's the art of demand creation."</p>
-                            <ul class="space-y-5 text-sm">
-                                <li class="pl-4 border-l border-zinc-800">Senior member of regional team responsible for Proton automotive brand distribution.</li>
-                                <li class="pl-4 border-l border-zinc-800">Conducted primary research translating intelligence into actionable competitive positioning.</li>
-                                <li class="pl-4 border-l border-zinc-800">Managed full end-to-end sales lifecycle via direct engagement and CRM pipeline management.</li>
-                                <li class="pl-4 border-l border-zinc-800">Designed post-sale loyalty systems improving referral pipeline performance.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Careem -->
-                <div class="flex flex-col md:flex-row gap-12 job-row">
-                    <div class="md:w-1/3">
-                        <div class="sticky top-32">
-                            <h3 class="text-5xl font-black text-white uppercase italic leading-none mb-4">CAREEM</h3>
-                            <p class="text-growth-green font-bold tracking-widest text-sm mb-4">INDIRECT SUPPLY CHANNEL MANAGER</p>
-                            <p class="text-zinc-500 text-xs tracking-widest uppercase">Dec 2015 – May 2017 | Cairo</p>
-                            <div class="w-12 h-1 bg-growth-green mt-6"></div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3 space-y-8 text-zinc-400">
-                        <div class="glass-card p-10 border-l-growth-green">
-                            <p class="text-white italic text-xl mb-10 leading-relaxed">"Before supply growth had a playbook in Egypt, someone had to write the very first draft."</p>
-                            <ul class="space-y-5 text-sm">
-                                <li class="pl-4 border-l border-zinc-800">Managed supply network of 650+ fleet suppliers (74% of total active driver fleet).</li>
-                                <li class="pl-4 border-l border-zinc-800">Redesigned activation and onboarding, reducing time-to-market for new drivers.</li>
-                                <li class="pl-4 border-l border-zinc-800">Launched Co-Branding with 3 strategic suppliers for decentralized remote training.</li>
-                                <li class="pl-4 border-l border-zinc-800">Introduced Go and Go+ product tiers, capturing incremental market share.</li>
                             </ul>
                         </div>
                     </div>
@@ -594,71 +532,71 @@
     </section>
 
     <!-- 5. CORE COMPETENCIES -->
-    <section class="py-32 bg-black border-y border-zinc-900 z-20 relative">
-        <div class="max-w-6xl mx-auto px-8">
+    <section class="py-20 md:py-32 bg-black border-y border-zinc-900 z-20 relative">
+        <div class="max-w-6xl mx-auto px-6 md:px-8">
             <div class="text-growth-green text-[10px] uppercase tracking-[0.5em] mb-12 flex items-center gap-4 text-center justify-center">
                 <div class="w-8 h-[1px] bg-growth-green"></div> COMPETENCY MATRIX <div class="w-8 h-[1px] bg-growth-green"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glass-card p-10 hover-target">
-                    <h3 class="text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6 inline-block">Executive Leadership & Strategy</h3>
-                    <p class="text-sm text-zinc-500 leading-loose">P&L Ownership · Strategic Planning · OKR Setting · Change Management · Board-Level Reporting · Cross-Functional Leadership · Organizational Design · Budget Ownership</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="glass-card p-6 md:p-10 hover-target">
+                    <h3 class="text-[10px] md:text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-4 md:mb-6 inline-block">Executive Leadership & Strategy</h3>
+                    <p class="text-xs md:text-sm text-zinc-500 leading-loose">P&L Ownership · Strategic Planning · OKR Setting · Change Management · Board-Level Reporting · Cross-Functional Leadership · Organizational Design · Budget Ownership</p>
                 </div>
-                <div class="glass-card p-10 hover-target border-l-growth-green">
-                    <h3 class="text-xs font-bold text-growth-green uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6 inline-block">Operational Excellence</h3>
-                    <p class="text-sm text-zinc-500 leading-loose">Lean Operations · Unit Economics · Last-Mile Delivery · Warehouse Operations · Supply Chain Digitization · SLA Management · Fulfillment Optimization · Process Engineering</p>
+                <div class="glass-card p-6 md:p-10 hover-target border-l-growth-green">
+                    <h3 class="text-[10px] md:text-xs font-bold text-growth-green uppercase tracking-widest border-b border-zinc-800 pb-2 mb-4 md:mb-6 inline-block">Operational Excellence</h3>
+                    <p class="text-xs md:text-sm text-zinc-500 leading-loose">Lean Operations · Unit Economics · Last-Mile Delivery · Warehouse Operations · Supply Chain Digitization · SLA Management · Fulfillment Optimization · Process Engineering</p>
                 </div>
-                <div class="glass-card p-10 hover-target">
-                    <h3 class="text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6 inline-block">Commercial Growth & GTM</h3>
-                    <p class="text-sm text-zinc-500 leading-loose">Go-To-Market Strategy · B2B Partnerships · Revenue Optimization · Customer Lifetime Value · Demand Generation · Churn Reduction · Key Account Management · Retail Channel Development</p>
+                <div class="glass-card p-6 md:p-10 hover-target">
+                    <h3 class="text-[10px] md:text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-4 md:mb-6 inline-block">Commercial Growth & GTM</h3>
+                    <p class="text-xs md:text-sm text-zinc-500 leading-loose">Go-To-Market Strategy · B2B Partnerships · Revenue Optimization · Customer Lifetime Value · Demand Generation · Churn Reduction · Key Account Management · Retail Channel Development</p>
                 </div>
-                <div class="glass-card p-10 hover-target border-l-growth-green">
-                    <h3 class="text-xs font-bold text-growth-green uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6 inline-block">Data, Technology & Tools</h3>
-                    <p class="text-sm text-zinc-500 leading-loose">Looker · Google Data Studio · SQL · CRM Systems · ERP Implementation · Live Operational Dashboards · Forecasting Model Development · Business Intelligence</p>
+                <div class="glass-card p-6 md:p-10 hover-target border-l-growth-green">
+                    <h3 class="text-[10px] md:text-xs font-bold text-growth-green uppercase tracking-widest border-b border-zinc-800 pb-2 mb-4 md:mb-6 inline-block">Data, Technology & Tools</h3>
+                    <p class="text-xs md:text-sm text-zinc-500 leading-loose">Looker · Google Data Studio · SQL · CRM Systems · ERP Implementation · Live Operational Dashboards · Forecasting Model Development · Business Intelligence</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 6. EDUCATION, LANGUAGES & INDUSTRIES -->
-    <section class="py-32 bg-zinc-950 z-20 relative">
-        <div class="max-w-6xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <section class="py-20 md:py-32 bg-zinc-950 z-20 relative">
+        <div class="max-w-6xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
             
-            <div class="lg:col-span-1 glass-card p-10 hover-target border-l-growth-blue">
-                <h3 class="text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6">Education</h3>
-                <span class="italic text-xl text-white block mb-2">Bachelor of Business Administration</span>
-                <span class="text-sm text-growth-green font-bold block">6th of October University</span>
-                <p class="mono text-[10px] text-zinc-600 mt-6 leading-relaxed uppercase tracking-widest">Cairo, EG<br>Graduated: 2020 · Grade: Good</p>
+            <div class="lg:col-span-1 glass-card p-6 md:p-10 hover-target border-l-growth-blue">
+                <h3 class="text-[10px] md:text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6">Education</h3>
+                <span class="italic text-lg md:text-xl text-white block mb-2">Bachelor of Business Administration</span>
+                <span class="text-xs md:text-sm text-growth-green font-bold block text-nowrap">6th of October University</span>
+                <p class="mono text-[9px] md:text-[10px] text-zinc-600 mt-6 leading-relaxed uppercase tracking-widest">Cairo, EG<br>Graduated: 2020 · Grade: Good</p>
             </div>
 
-            <div class="lg:col-span-1 glass-card p-10 hover-target border-l-growth-green">
-                <h3 class="text-xs font-bold text-growth-green uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6">Languages</h3>
-                <div class="mb-6">
+            <div class="lg:col-span-1 glass-card p-6 md:p-10 hover-target border-l-growth-green">
+                <h3 class="text-[10px] md:text-xs font-bold text-growth-green uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6">Languages</h3>
+                <div class="mb-5 md:mb-6">
                     <div class="flex justify-between items-center mb-1">
                         <span class="text-sm font-bold text-white">Arabic</span>
-                        <span class="mono text-[10px] text-growth-green uppercase tracking-wider">Native Fluency</span>
+                        <span class="mono text-[9px] md:text-[10px] text-growth-green uppercase tracking-wider">Native Fluency</span>
                     </div>
                 </div>
                 <div>
                     <div class="flex justify-between items-center mb-1">
                         <span class="text-sm font-bold text-white">English</span>
-                        <span class="mono text-[10px] text-growth-blue uppercase tracking-wider">Professional</span>
+                        <span class="mono text-[9px] md:text-[10px] text-growth-blue uppercase tracking-wider">Professional</span>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-1 glass-card p-10 hover-target border-l-growth-blue">
-                <h3 class="text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6">Industries</h3>
+            <div class="lg:col-span-1 glass-card p-6 md:p-10 hover-target border-l-growth-blue">
+                <h3 class="text-[10px] md:text-xs font-bold text-growth-blue uppercase tracking-widest border-b border-zinc-800 pb-2 mb-6">Industries</h3>
                 <div class="flex flex-wrap gap-2">
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">B2B FMCG Tech</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Mobility & Ride-Hailing</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Hospitality</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Automotive</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">B2B E-Commerce</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Supply Chain</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Embedded Finance</span>
-                    <span class="text-[9px] px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Last-Mile Delivery</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">B2B FMCG Tech</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Mobility</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Hospitality</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Automotive</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">E-Commerce</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Supply Chain</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">FinTech</span>
+                    <span class="text-[8px] md:text-[9px] px-2 md:px-3 py-1 border border-zinc-800 text-zinc-400 rounded-full uppercase tracking-tighter">Delivery</span>
                 </div>
             </div>
 
@@ -666,16 +604,16 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-black py-32 px-8 border-t border-zinc-900 relative z-20 overflow-hidden">
+    <footer class="bg-black py-20 md:py-32 px-6 md:px-8 border-t border-zinc-900 relative z-20 overflow-hidden">
         <div class="glow-node bg-blue-900/20 bottom-[-50%] left-[20%]"></div>
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 relative z-10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 md:gap-12 relative z-10 text-center md:text-left">
             <div>
-                <h2 class="text-6xl font-black italic text-white mb-4 uppercase">ELKHAZRAGY</h2>
-                <p class="mono text-sm text-zinc-500 uppercase tracking-[0.4em]">Architecting Scale // Executing with Precision</p>
+                <h2 class="text-4xl md:text-6xl font-black italic text-white mb-4 uppercase">ELKHAZRAGY</h2>
+                <p class="mono text-[10px] md:text-sm text-zinc-500 uppercase tracking-[0.4em]">Architecting Scale // Executing with Precision</p>
             </div>
-            <div class="flex flex-col md:items-end gap-6">
-                <a href="mailto:melkhazragy@outlook.com" class="text-2xl font-light text-zinc-300 hover:text-growth-green transition-colors hover-target">melkhazragy@outlook.com</a>
-                <div class="flex gap-12 mono text-xs uppercase tracking-widest text-zinc-500">
+            <div class="flex flex-col md:items-end gap-4 md:gap-6">
+                <a href="mailto:melkhazragy@outlook.com" class="text-lg md:text-2xl font-light text-zinc-300 hover:text-growth-green transition-colors hover-target truncate max-w-[90vw]">melkhazragy@outlook.com</a>
+                <div class="flex gap-8 md:gap-12 mono text-[10px] uppercase tracking-widest text-zinc-500">
                     <a href="https://linkedin.com/in/mahmoud-el-khazragy" class="hover:text-white transition-colors hover-target">LinkedIn</a>
                     <span class="text-zinc-800">//</span>
                     <span>Cairo, EG</span>
@@ -689,8 +627,16 @@
 
         // --- CORE ENGINE ---
         const isMobile = window.matchMedia('(pointer: coarse)').matches;
+        
+        // VH Fix for Mobile
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        window.addEventListener('resize', () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
 
-        // --- CURSOR (STRIKE GREEN) ---
+        // --- CURSOR ---
         if (!isMobile) {
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
@@ -703,6 +649,10 @@
                 target.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
                 target.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
             });
+        } else {
+            document.body.style.cursor = 'auto';
+            document.querySelector('.cursor-dot').style.display = 'none';
+            document.querySelector('.cursor-outline').style.display = 'none';
         }
 
         // --- HERO ENTRANCE ---
@@ -713,9 +663,8 @@
               .to("#contact-strike", { opacity: 1, x: 20, duration: 1.2, ease: "power2.out" }, "-=1")
               .to("#hero-statement", { opacity: 1, y: -20, duration: 1.2, ease: "power3.out" }, "-=0.8")
               .to("#hero-engine", { opacity: 1, duration: 1 }, "-=0.8")
-              .from("#hero-img", { opacity: 0, x: 100, duration: 2, ease: "power2.out" }, 0.2);
+              .from("#hero-img", { opacity: 0, x: 50, duration: 2, ease: "power2.out" }, 0.2);
 
-        // Floating Portrait Loop
         if (!isMobile) {
             gsap.to("#hero-img", { y: "-=20", duration: 6, ease: "sine.inOut", repeat: -1, yoyo: true });
         }
@@ -727,7 +676,7 @@
                 const depth = parseFloat(layer.getAttribute("data-depth"));
                 if(depth < 4) {
                     gsap.to(layer, {
-                        y: -depth * (isMobile ? 40 : 100),
+                        y: -depth * (isMobile ? 30 : 100),
                         ease: "none",
                         scrollTrigger: { trigger: scene, start: "top top", end: "bottom top", scrub: true }
                     });
@@ -749,17 +698,11 @@
         // --- COUNTERS ---
         gsap.utils.toArray(".counter").forEach(counter => {
             const target = parseFloat(counter.getAttribute("data-target"));
-            const decimals = parseInt(counter.getAttribute("data-decimals")) || 0;
             gsap.to(counter, {
                 innerText: target,
                 duration: 2,
                 scrollTrigger: { trigger: counter, start: "top 95%" },
-                snap: { innerText: Math.pow(10, -decimals) },
-                onUpdate: function() {
-                    if(decimals > 0) {
-                        counter.innerText = Number(this.targets()[0].innerText).toFixed(decimals);
-                    }
-                }
+                snap: { innerText: 1 }
             });
         });
 
